@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-light: #e0f2fe;
+  --primary: #0ea5e9;
+  --primary-dark: #0369a1;
+  --secondary-light: #dcfce7;
+  --secondary: #22c55e;
+  --secondary-dark: #15803d;
+}
+
+body {
+  @apply font-sans antialiased text-gray-800 bg-gray-50 dark:bg-dark dark:text-gray-200;
+}
+
+.glass-card {
+  @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg rounded-xl border border-gray-200 dark:border-gray-800 shadow-lg;
+}
+
+.glass-button {
+  @apply bg-primary-500/90 hover:bg-primary-600/90 text-white backdrop-blur-sm rounded-lg transition-all duration-300 shadow-md hover:shadow-lg;
+}
+
+.glass-button-secondary {
+  @apply bg-secondary-500/90 hover:bg-secondary-600/90 text-white backdrop-blur-sm rounded-lg transition-all duration-300 shadow-md hover:shadow-lg;
+}
+
+.glass-input {
+  @apply bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300;
+}
+
+.micro-interaction {
+  @apply transition-all duration-300 hover:scale-105;
+}
+
+.section-heading {
+  @apply text-3xl font-bold text-gray-800 dark:text-white mb-6;
+}
+
+.card-heading {
+  @apply text-xl font-semibold text-gray-800 dark:text-white mb-2;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-300 dark:bg-primary-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-400 dark:bg-primary-600;
+}
