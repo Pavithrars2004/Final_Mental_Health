@@ -1,72 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Filter, Plus, X } from 'lucide-react';
 import FoodCard from '../components/Nutrition/FoodCard';
 import FoodScanner from '../components/Nutrition/FoodScanner';
 import { NutritionItem } from '../types';
 
-const Nutrition: React.FC = () => {
-  // Sample data
-  const [foodItems] = useState<NutritionItem[]>([
-    {
-      id: '1',
-      name: 'Grilled Chicken Salad',
-      calories: 350,
-      protein: 30,
-      carbs: 15,
-      fat: 18,
-      image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80'
-    },
-    {
-      id: '2',
-      name: 'Avocado Toast',
-      calories: 280,
-      protein: 8,
-      carbs: 25,
-      fat: 16,
-      image: 'https://images.unsplash.com/photo-1588137378633-dea1336ce1e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80'
-    },
-    {
-      id: '3',
-      name: 'Protein Smoothie',
-      calories: 220,
-      protein: 20,
-      carbs: 30,
-      fat: 5,
-      image: 'https://images.unsplash.com/photo-1553530666-ba11a90bb110?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80'
-    },
-    {
-      id: '4',
-      name: 'Quinoa Bowl',
-      calories: 420,
-      protein: 15,
-      carbs: 65,
-      fat: 12,
-      image: 'https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80'
-    },
-    {
-      id: '5',
-      name: 'Greek Yogurt with Berries',
-      calories: 180,
-      protein: 18,
-      carbs: 20,
-      fat: 2,
-      image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80'
-    },
-    {
-      id: '6',
-      name: 'Salmon with Vegetables',
-      calories: 450,
-      protein: 35,
-      carbs: 10,
-      fat: 28,
-      image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80'
-    }
-  ]);
+interface Meal {
+  name: string;
+  calories: string;
+  carbs: string;
+}
 
+interface DayMeals {
+  breakfast: Meal;
+  lunch: Meal;
+  dinner: Meal;
+}
+
+interface WeeklyMealPlan {
+  [day: string]: DayMeals;
+}
+
+interface ApiResponse {
+  weeklyMealPlan: WeeklyMealPlan;
+}
+
+const Nutrition: React.FC = () => {
+  const [foodItems] = useState<NutritionItem[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [mealItems, setMealItems] = useState<NutritionItem[]>([]);
   const [showScanner, setShowScanner] = useState(false);
+  const [weeklyMealPlan, setWeeklyMealPlan] = useState<WeeklyMealPlan | null>(null);
+
+  useEffect(() => {
+    // Fetch diet plan data from the API
+    fetch('http://127.0.0.1:5000/retrieve_diet_plan')
+      .then(response => response.json())
+      .then((data: ApiResponse[]) => {
+        console.log('Diet Plan Data:', data[0].weeklyMealPlan);
+        setWeeklyMealPlan(data[0].weeklyMealPlan);
+      })
+      .catch(error => {
+        console.error('Error fetching diet plan:', error);
+      });
+  }, []);
 
   const handleAddToMeal = (food: NutritionItem) => {
     setMealItems([...mealItems, { ...food, id: Date.now().toString() }]);
@@ -77,8 +54,6 @@ const Nutrition: React.FC = () => {
   };
 
   const handleScanComplete = (foodName: string) => {
-    // In a real app, this would use the scanned food data
-    // For demo purposes, we'll add a mock item
     const newFood: NutritionItem = {
       id: Date.now().toString(),
       name: foodName,
@@ -86,7 +61,7 @@ const Nutrition: React.FC = () => {
       protein: 12,
       carbs: 45,
       fat: 10,
-      image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80'
+      image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80',
     };
     
     handleAddToMeal(newFood);
@@ -104,7 +79,7 @@ const Nutrition: React.FC = () => {
           calories: totals.calories + item.calories,
           protein: totals.protein + item.protein,
           carbs: totals.carbs + item.carbs,
-          fat: totals.fat + item.fat
+          fat: totals.fat + item.fat,
         };
       },
       { calories: 0, protein: 0, carbs: 0, fat: 0 }
@@ -241,18 +216,45 @@ const Nutrition: React.FC = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredFoodItems.map((food, index) => (
-                <motion.div
-                  key={food.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.1 * index }}
-                >
-                  <FoodCard food={food} onAdd={handleAddToMeal} />
-                </motion.div>
-              ))}
-            </div>
+            {/* Display Weekly Meal Plan */}
+            {weeklyMealPlan ? (
+              <div className="space-y-8">
+                {Object.entries(weeklyMealPlan).map(([day, meals]) => (
+                  <div key={day}>
+                    <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-white">{day}</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {Object.entries(meals).map(([mealType, meal]) => (
+                        <motion.div
+                          key={`${day}-${mealType}`}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <FoodCard 
+                            meal={{
+                              ...meal,
+                              id: `${day}-${mealType}`,
+                              
+                            }}
+                            onAdd={() => handleAddToMeal({
+                              id: Date.now().toString(),
+                              name: meal.name,
+                              calories: parseInt(meal.calories.split('-')[0]), // Extract lower bound of calories
+                              protein: 0, // Placeholder, as protein data is not provided
+                              carbs: parseInt(meal.carbs.replace('g', '')), // Remove 'g' and convert to number
+                              fat: 0, // Placeholder, as fat data is not provided
+                              image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80',
+                            })}
+                          />
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-500 dark:text-gray-400">No meal plan available. Please check back later.</p>
+            )}
           </section>
         </>
       )}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Filter, Plus, ArrowRight } from 'lucide-react';
+import { Calendar,  Plus, ArrowRight } from 'lucide-react';
 import ActivityCard from '../components/Fitness/ActivityCard';
 import { FitnessActivity } from '../types';
 

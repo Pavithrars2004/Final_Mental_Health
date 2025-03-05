@@ -4,6 +4,7 @@ import { Save, Tag, X, Mic } from 'lucide-react';
 import MoodSelector from './MoodSelector';
 import { JournalEntry } from '../../types';
 
+
 interface JournalEditorProps {
   onSave: (entry: Omit<JournalEntry, 'id' | 'date' | 'sentiment'>) => void;
 }
@@ -33,13 +34,47 @@ const JournalEditor: React.FC<JournalEditorProps> = ({ onSave }) => {
     }
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (content.trim() && mood) {
+      // Log the user's input to the console
+      console.log('User Input:', {
+        content,
+        mood,
+        tags
+      });
+
+      try {
+        // Send the journal entry to the API
+        const response = await fetch('http://127.0.0.1:5000/analyze_journal', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            text: content, // Send the journal entry text
+          }),
+        });
+
+        // Check if the request was successful
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // Parse the JSON response
+        const data = await response.json();
+        console.log('API Response:', data); // Log the API response
+      } catch (error) {
+        console.error('Error sending data to the API:', error);
+      }
+
+      // Call the `onSave` prop to pass data to the parent component (if needed)
       onSave({
         content,
         mood,
         tags
       });
+
+      // Reset the form
       setContent('');
       setMood(null);
       setTags([]);
