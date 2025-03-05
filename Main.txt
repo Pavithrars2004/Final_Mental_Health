@@ -1,0 +1,593 @@
+http://127.0.0.1:5000/generate_plan
+
+input -
+
+{
+    "biometric_data": {
+        "age": 35,
+        "height": 170,
+        "weight": 70,
+        "gender": "male",
+        "activity_level": "moderate",
+        "medical_history": ["hypertension", "diabetes"],
+        "dietary_preferences": ["vegetarian", "low-carb"]
+    }
+}
+
+output 
+
+{
+  "weeklyMealPlan": {
+    "Friday": {
+      "breakfast": {
+        "calories": "250-300",
+        "carbs": "25-30g",
+        "name": "Idli with Sambar"
+      },
+      "dinner": {
+        "calories": "300-350",
+        "carbs": "20-25g",
+        "name": "Vegetable Biryani (low carb)"
+      },
+      "lunch": {
+        "calories": "300-350",
+        "carbs": "35-40g",
+        "name": "Masala Dosa"
+      }
+    },
+    "Monday": {
+      "breakfast": {
+        "calories": "250-300",
+        "carbs": "15-20g",
+        "name": "Besan Chilla with Methi"
+      },
+      "dinner": {
+        "calories": "300-350",
+        "carbs": "15-20g",
+        "name": "Palak Paneer with Cauliflower Rice"
+      },
+      "lunch": {
+        "calories": "350-400",
+        "carbs": "25-30g",
+        "name": "Mix Vegetable Raita with Multigrain Roti"
+      }
+    },
+    "Saturday": {
+      "breakfast": {
+        "calories": "200-250",
+        "carbs": "20-25g",
+        "name": "Dhokla"
+      },
+      "dinner": {
+        "calories": "300-350",
+        "carbs": "15-20g",
+        "name": "Dal Makhani with low carb Naan"
+      },
+      "lunch": {
+        "calories": "350-400",
+        "carbs": "25-30g",
+        "name": "Undhiyu"
+      }
+    },
+    "Sunday": {
+      "breakfast": {
+        "calories": "250-300",
+        "carbs": "25-30g",
+        "name": "Upma"
+      },
+      "dinner": {
+        "calories": "350-400",
+        "carbs": "25-30g",
+        "name": "Chana Masala with Brown Rice"
+      },
+      "lunch": {
+        "calories": "350-400",
+        "carbs": "30-35g",
+        "name": "Aloo Gobi with Roti"
+      }
+    },
+    "Thursday": {
+      "breakfast": {
+        "calories": "200-250",
+        "carbs": "15-20g",
+        "name": "Spiced Oatmeal with Nuts and Seeds"
+      },
+      "dinner": {
+        "calories": "350-400",
+        "carbs": "20-25g",
+        "name": "Paneer Tikka Masala with Cauliflower Rice"
+      },
+      "lunch": {
+        "calories": "400-450",
+        "carbs": "30-35g",
+        "name": "Rajma Masala with Brown Rice"
+      }
+    },
+    "Tuesday": {
+      "breakfast": {
+        "calories": "200-250",
+        "carbs": "10-15g",
+        "name": "Moong Dal Cheela"
+      },
+      "dinner": {
+        "calories": "350-400",
+        "carbs": "20-25g",
+        "name": "Malai Kofta with Vegetable Pulao (low carb)"
+      },
+      "lunch": {
+        "calories": "300-350",
+        "carbs": "20-25g",
+        "name": "Bhindi Masala with Almond Flour Roti"
+      }
+    },
+    "Wednesday": {
+      "breakfast": {
+        "calories": "250-300",
+        "carbs": "10-15g",
+        "name": "Tofu Scramble with Spinach"
+      },
+      "dinner": {
+        "calories": "300-350",
+        "carbs": "15-20g",
+        "name": "Mushroom Mutter Masala with low carb roti"
+      },
+      "lunch": {
+        "calories": "300-350",
+        "carbs": "15-20g",
+        "name": "Baingan Bharta with Flaxseed Roti"
+      }
+    }
+  }
+}
+
+------------------------------------------------------------------
+
+http://127.0.0.1:5000/generate_coach_plan
+
+input
+{
+    "biometrics": {
+        "age": 30,
+        "height": 175,
+        "weight": 80,
+        "gender": "male",
+        "activity_level": "moderate",
+        "target": ["lose weight", "build muscle"],
+        "target_weight": 75
+    }
+}
+
+
+output
+
+{
+  "weekly_plan": {
+    "Friday": {
+      "exercises": [
+        {
+          "name": "Deadlifts",
+          "reps": "5-8",
+          "sets": "3"
+        },
+        {
+          "name": "Bulgarian Split Squats",
+          "reps": "8-12",
+          "sets": "3"
+        },
+        {
+          "name": "Hamstring Curls",
+          "reps": "10-15",
+          "sets": "3"
+        },
+        {
+          "name": "Standing Calf Raises",
+          "reps": "15-20",
+          "sets": "3"
+        },
+        {
+          "name": "Side Plank (each side)",
+          "reps": "30-60 seconds",
+          "sets": "3"
+        },
+        {
+          "name": "Reverse Crunches",
+          "reps": "15-20",
+          "sets": "3"
+        }
+      ],
+      "focus": "Lower Body Strength & Core"
+    },
+    "Monday": {
+      "exercises": [
+        {
+          "name": "Bench Press",
+          "reps": "8-12",
+          "sets": "3"
+        },
+        {
+          "name": "Overhead Press",
+          "reps": "8-12",
+          "sets": "3"
+        },
+        {
+          "name": "Dumbbell Rows",
+          "reps": "8-12",
+          "sets": "3"
+        },
+        {
+          "name": "Pull-ups (or Lat Pulldowns)",
+          "reps": "As many as possible",
+          "sets": "3"
+        },
+        {
+          "name": "Bicep Curls",
+          "reps": "10-15",
+          "sets": "3"
+        },
+        {
+          "name": "Triceps Extensions",
+          "reps": "10-15",
+          "sets": "3"
+        }
+      ],
+      "focus": "Upper Body Strength"
+    },
+    "Saturday": {
+      "exercises": [
+        {
+          "duration": "30-60 minutes",
+          "name": "Yoga or Stretching"
+        },
+        {
+          "duration": "30-45 minutes",
+          "name": "Light Walking or Cycling"
+        }
+      ],
+      "focus": "Active Rest"
+    },
+    "Sunday": {
+      "exercises": [
+        {
+          "name": "Complete Rest"
+        }
+      ],
+      "focus": "Rest"
+    },
+    "Thursday": {
+      "exercises": [
+        {
+          "name": "Incline Dumbbell Press",
+          "reps": "8-12",
+          "sets": "3"
+        },
+        {
+          "name": "Dumbbell Shoulder Press",
+          "reps": "8-12",
+          "sets": "3"
+        },
+        {
+          "name": "Barbell Rows",
+          "reps": "8-12",
+          "sets": "3"
+        },
+        {
+          "name": "Chin-ups (or Lat Pulldowns)",
+          "reps": "As many as possible",
+          "sets": "3"
+        },
+        {
+          "name": "Hammer Curls",
+          "reps": "10-15",
+          "sets": "3"
+        },
+        {
+          "name": "Overhead Triceps Extensions",
+          "reps": "10-15",
+          "sets": "3"
+        }
+      ],
+      "focus": "Upper Body Strength"
+    },
+    "Tuesday": {
+      "exercises": [
+        {
+          "name": "Squats",
+          "reps": "8-12",
+          "sets": "3"
+        },
+        {
+          "name": "Romanian Deadlifts",
+          "reps": "8-12",
+          "sets": "3"
+        },
+        {
+          "name": "Leg Press",
+          "reps": "10-15",
+          "sets": "3"
+        },
+        {
+          "name": "Calf Raises",
+          "reps": "15-20",
+          "sets": "3"
+        },
+        {
+          "name": "Plank",
+          "reps": "30-60 seconds",
+          "sets": "3"
+        },
+        {
+          "name": "Crunches",
+          "reps": "15-20",
+          "sets": "3"
+        }
+      ],
+      "focus": "Lower Body Strength & Core"
+    },
+    "Wednesday": {
+      "exercises": [
+        {
+          "duration": "30-45 minutes",
+          "name": "Running"
+        },
+        {
+          "name": "Russian Twists",
+          "reps": "15-20",
+          "sets": "3"
+        },
+        {
+          "name": "Bicycle Crunches",
+          "reps": "15-20",
+          "sets": "3"
+        },
+        {
+          "name": "Leg Raises",
+          "reps": "15-20",
+          "sets": "3"
+        }
+      ],
+      "focus": "Cardio & Core"
+    }
+  }
+}
+
+
+-------------------------------------------------------------------------------------------------
+input
+{
+    "data": {
+        "overallSentiment": "negative",
+        "moodShifts": [
+            {
+                "date": "March 4, 2025",
+                "mood": "low",
+                "description": "Feeling overwhelmed, unmotivated, and burdened by negative thoughts. Expresses feelings of isolation and difficulty sleeping."
+            }
+        ],
+        "emotionalTriggers": [
+            {
+                "trigger": "Waking up",
+                "emotion": "heaviness, lack of motivation"
+            },
+            {
+                "trigger": "Daily tasks",
+                "emotion": "feeling overwhelmed"     
+            },
+            {
+                "trigger": "Thoughts",
+                "emotion": "anxiety, self-doubt, exhaustion"
+            },
+            {
+                "trigger": "Being around people",    
+                "emotion": "isolation"
+            },
+            {
+                "trigger": "Night/Darkness",
+                "emotion": "suffocation, relentless thoughts, insomnia"
+            },
+            {
+                "trigger": "Seeking help",
+                "emotion": "fear of judgment"        
+            }
+        ],
+        "sentimentOverTime": [
+            {
+                "date": "March 4, 2025",
+                "sentiment": "negative"
+            }
+        ],
+        "dominantEmotions": [
+            "overwhelm",
+            "anxiety",
+            "isolation",
+            "hopelessness"
+        ]
+    }
+}
+
+output
+
+{
+  "breathingExercises": [
+    {
+      "description": "Deep belly breathing to calm the nervous system and reduce anxiety. Inhale deeply through the nose, expanding the belly, and exhale slowly through the mouth.",
+      "duration": "5 minutes",
+      "exercise": "Diaphragmatic Breathing",
+      "frequency": "3-4 times daily"
+    },
+    {
+      "description": "Controlled breathing technique to regulate emotions and improve focus. Inhale for 4 seconds, hold for 4 seconds, exhale for 4 seconds, and hold for 4 seconds.",
+      "duration": "5 minutes",
+      "exercise": "Box Breathing",
+      "frequency": "As needed for anxiety or overwhelm"
+    },
+    {
+      "description": "Tense and release different muscle groups to reduce physical tension and promote relaxation. Combine with deep breathing for enhanced effectiveness.",
+      "duration": "10-15 minutes",
+      "exercise": "Progressive Muscle Relaxation",
+      "frequency": "Daily or as needed for tension"
+    }
+  ],
+  "cognitiveBehavioralTherapy": [
+    {
+      "description": "Identify negative thoughts, challenge their validity, and reframe them into more balanced perspectives. Focus on thoughts related to overwhelm, anxiety, isolation, and hopelessness.",
+      "exercise": "Thought Records",
+      "frequency": "Daily"
+    },
+    {
+      "description": "Schedule enjoyable activities, even small ones, to counteract lack of motivation and isolation. Start with activities that require minimal effort and gradually increase complexity.",
+      "exercise": "Behavioral Activation",
+      "frequency": "Daily"
+    },
+    {
+      "description": "Gradually expose oneself to social situations that trigger feelings of isolation, starting with less anxiety-provoking scenarios and gradually increasing the difficulty.",
+      "exercise": "Exposure Therapy (for social anxiety)",
+      "frequency": "Weekly, increasing frequency as tolerated"
+    }
+  ],
+  "guidedMeditations": [
+    {
+      "description": "Focus on present moment awareness to reduce overthinking and anxiety. Pay attention to breath, body sensations, and thoughts without judgment.",
+      "duration": "5-10 minutes",
+      "frequency": "Daily",
+      "meditation": "Mindfulness Meditation for Anxiety"
+    },
+    {
+      "description": "Cultivate feelings of compassion and self-acceptance to counteract self-doubt and hopelessness. Direct loving-kindness towards oneself and others.",
+      "duration": "5-10 minutes",
+      "frequency": "Daily",
+      "meditation": "Loving-Kindness Meditation"
+    },
+    {
+      "description": "Use guided imagery and relaxation techniques to promote sleep and reduce insomnia. Focus on calming the mind and body before bedtime.",
+      "duration": "10-15 minutes",
+      "frequency": "Nightly",
+      "meditation": "Sleep Meditation"
+    }
+  ]
+}
+
+
+-------------------------------------------------------------------------------------------------
+
+input
+{
+    "text": "Date: March 4, 2025\n\nToday has been another tough day. I woke up feeling like a heavy weight was pressing down on my chest. It's hard to find the motivation to get out of bed, let alone face the world. The simplest tasks feel like monumental challenges, and I can't shake the feeling of being overwhelmed.\n\nMy mind is a whirlwind of thoughts, constantly racing and never settling. I replay every mistake I've ever made, every missed opportunity, and every moment of self-doubt. It's exhausting, and I can't seem to find any peace.\n\nI feel so isolated, even when I'm surrounded by people. It's like there's an invisible barrier that separates me from everyone else. I try to reach out, but the words get stuck in my throat, and I end up feeling even more alone.\n\nSleep has become a distant memory. I lie awake at night, staring at the ceiling, my mind refusing to quiet down. The darkness feels suffocating, and I can't escape the relentless thoughts that plague me.\n\nI know I need help, but the fear of being judged or not being taken seriously holds me back. I just want to feel normal again, to find a way to silence the chaos in my mind and find some semblance of peace."
+}
+
+
+output
+
+{
+  "entries": [
+    {
+      "date": "March 4, 2025",
+      "emotional_triggers": [
+        "waking up with a heavy feeling",
+        "difficulty finding motivation",
+        "tasks feeling like challenges",
+        "constant racing thoughts",
+        "replaying past mistakes and missed opportunities",
+        "self-doubt",
+        "feeling isolated",
+        "difficulty communicating",
+        "lack of sleep",
+        "fear of being judged"
+      ],
+      "mood": "overwhelmed, exhausted, isolated, fearful",
+      "mood_shifts": [],
+      "sentiment": "negative",
+      "time_ranges": []
+    }
+  ]
+}
+--------------------------------------------------------------------------------------
+input
+
+{
+    "text": "I feel very sad and lonely all the time."
+}
+
+output
+
+{
+  "additionalNotes": "This assessment is based on limited information and should not be considered a formal diagnosis. A comprehensive evaluation by a qualified mental health professional is necessary for accurate diagnosis and treatment planning.",
+  "potentialConditions": [
+    "Major Depressive Disorder (MDD)",
+    "Persistent Depressive Disorder (PDD)",
+    "Adjustment Disorder with Depressed Mood"
+  ],
+  "potentialMedication": [
+    {
+      "class": "Selective Serotonin Reuptake Inhibitors (SSRIs)",
+      "examples": "Sertraline, Fluoxetine, Citalopram",
+      "monitoring": "Regular check-ups with prescribing physician"
+    }
+  ],
+  "presentingSymptoms": [
+    "Persistent sadness",
+    "Loneliness"
+  ],
+  "recommendedInterventions": [
+    {
+      "description": "Cognitive Behavioral Therapy (CBT), Interpersonal Therapy (IPT)",
+      "frequency": "Weekly",
+      "type": "Psychotherapy"
+    },
+    {
+      "description": "Peer support or condition-specific groups",
+      "frequency": "Weekly or bi-weekly",
+      "type": "Support Groups"
+    },
+    {
+      "description": "Regular exercise, healthy diet, adequate sleep, mindfulness practices",
+      "frequency": "Daily",
+      "type": "Lifestyle Changes"
+    }
+  ],
+  "referralRecommendations": [
+    {
+      "reason": "Medication management and further diagnostic evaluation",
+      "specialist": "Psychiatrist"
+    },
+    {
+      "reason": "Psychotherapy",
+      "specialist": "Psychologist/Therapist"
+    }
+  ],
+  "riskAssessment": {
+    "selfHarm": {
+      "recommendations": "Assess for self-harm behaviors.",
+      "risk": "Unknown, further assessment needed"
+    },
+    "suicidality": {
+      "recommendations": "Assess for suicidal ideation and intent.",
+      "risk": "Unknown, further assessment needed"
+    }
+  },
+  "severityAssessment": {
+    "level": "Moderate",
+    "rationale": "Symptoms present consistently impacting daily life."
+  }
+}
+
+
+--------------------------------------------------------------------------------------------
+input 
+http://127.0.0.1:5000/food-recognition
+
+output
+{
+    "foodItem": "Puttu",
+    "note": "Nutrient values can vary based on ingredients used and preparation method",
+    "nutrientValues": {
+        "calories": "350-400kcal",
+        "carbohydrates": "70-80g",
+        "fat": "2-3g",
+        "fiber": "2-3g",
+        "iron": "1-2mg",
+        "protein": "3-4g",
+        "servingSize": "100g"
+    }
+}
+
+

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Save, Tag, X } from 'lucide-react';
+import { Save, Tag, X, Mic } from 'lucide-react';
 import MoodSelector from './MoodSelector';
 import { JournalEntry } from '../../types';
 
@@ -13,6 +13,7 @@ const JournalEditor: React.FC<JournalEditorProps> = ({ onSave }) => {
   const [mood, setMood] = useState<JournalEntry['mood'] | null>(null);
   const [tagInput, setTagInput] = useState('');
   const [tags, setTags] = useState<string[]>([]);
+  const [isRecording, setIsRecording] = useState(false);
 
   const handleAddTag = () => {
     if (tagInput.trim() && !tags.includes(tagInput.trim())) {
@@ -45,6 +46,29 @@ const JournalEditor: React.FC<JournalEditorProps> = ({ onSave }) => {
     }
   };
 
+  const startVoiceRecognition = () => {
+    if (!('webkitSpeechRecognition' in window)) {
+      alert('Speech recognition is not supported in your browser.');
+      return;
+    }
+
+    const recognition = new (window as any).webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    recognition.onstart = () => setIsRecording(true);
+    recognition.onend = () => setIsRecording(false);
+    recognition.onerror = (event: any) => console.error('Speech recognition error:', event);
+
+    recognition.onresult = (event: any) => {
+      const transcript = event.results[0][0].transcript;
+      setContent(prevContent => prevContent + ' ' + transcript);
+    };
+
+    recognition.start();
+  };
+
   return (
     <motion.div 
       className="glass-card p-6"
@@ -63,6 +87,17 @@ const JournalEditor: React.FC<JournalEditorProps> = ({ onSave }) => {
           placeholder="Write your thoughts here..."
           className="glass-input w-full h-40 p-4 resize-none"
         />
+      </div>
+
+      {/* Voice Input Button */}
+      <div className="mb-6">
+        <button 
+          onClick={startVoiceRecognition} 
+          className={`glass-button px-4 py-2 flex items-center ${isRecording ? 'bg-red-500' : ''}`}
+        >
+          <Mic size={18} className="mr-2" />
+          {isRecording ? 'Listening...' : 'Start Recording'}
+        </button>
       </div>
       
       <div className="mb-6">
