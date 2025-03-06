@@ -1,4 +1,5 @@
 http://127.0.0.1:5000/generate_plan
+http://127.0.0.1:5000/retrieve_diet_plan
 
 input -
 
@@ -16,7 +17,8 @@ input -
 
 output 
 
-{
+[
+  {
   "weeklyMealPlan": {
     "Friday": {
       "breakfast": {
@@ -138,7 +140,7 @@ output
       }
     }
   }
-}
+}]
 
 ------------------------------------------------------------------
 
